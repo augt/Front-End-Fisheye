@@ -6,6 +6,30 @@
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+}
+
+.photograph-header img {
+    height: 200px;
+    width: 200px;
+    border-radius: 100px;
+    object-fit: cover;
+}
+
+.photograph-header h1 {
+    margin-right: 20px;
+    margin-bottom: 5px;
+    color: #D3573C;
+    font-size: 50px;
+    font-weight: 400;
+}
+
+.photograph-header .location {
+    color: #901C1C;
+    margin-bottom: 15px;
 }
 
 .contact_button {
@@ -73,4 +97,97 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+}
+
+/* Bouton de tri */
+
+.sorting-block,
+.sorting-block.open {
+  margin-top: 10px;
+  display: flex;
+  margin-left: 100px;
+  align-items: baseline;
+  z-index: 99;
+}
+
+.sort-by-button {
+  position: relative;
+  cursor: pointer;
+}
+
+.sorting-block.open .dropdown-options {
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-options {
+  display: none;
+  position: absolute;
+  top: 50px;
+  background-color: #901c1c;
+  width: 170px;
+  border-radius: 0 0 5px 5px;
+}
+
+.dropdown-options a {
+  text-decoration: none;
+  color: white;
+  margin-left: 20px;
+  font-size: 18px;
+  padding: 10px 0;
+  font-weight: 700;
+}
+
+.child-line {
+  width: 150px;
+}
+
+.sorting-block .arrow-up {
+  display: none;
+}
+
+.sorting-block.open .arrow-up {
+  display: inline-block;
+}
+
+.sorting-block.open .arrow-down {
+  display: none;
+}
+
+.sorting-block p {
+  font-weight: 700;
+  font-size: 18px;
+  margin-right: 25px;
+}
+
+.sorting-block .sort-by-button,
+.sorting-block.open .sort-by-button {
+  display: flex;
+  flex-direction: column;
+  background-color: #901c1c;
+  border-radius: 5px;
+}
+
+.dropdown-button {
+  border: unset;
+  background-color: unset;
+  color: white;
+  padding: unset;
+  height: 55px;
+  width: 170px;
+  text-align: start;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.dropdown-button-text {
+  margin-left: 20px;
+}
+
+.fa-solid {
+  margin-right: 20px;
 }

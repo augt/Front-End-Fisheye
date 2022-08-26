@@ -5,6 +5,9 @@
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Fisheye - photographe </title>
   </head>
   <body>
@@ -16,6 +19,23 @@
     <main id="main">
       <div class="photograph-header">
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+      </div>
+      <!-- sorting options -->
+      <div class="sorting-block">
+        <p>Trier par</p>
+        <div class="sort-by-button" aria-haspopup="listbox" role="listbox">
+          <button class="dropdown-button" type="button" id="order-by" role="option" aria-selected="true">
+            <span class="dropdown-button-text">Popularité</span>
+            <em class="arrow-down fa-solid fa-angle-down"></em>
+            <em class="fa-solid fa-angle-up arrow-up"></em>
+          </button>
+          <div class="dropdown-options" aria-labelledby="order-by">
+            <hr class="child-line" />
+            <a href="#" class="sort-date" role="option">Date</a>
+            <hr class="child-line" />
+            <a href="#" class="sort-title" role="option">Titre</a>
+          </div>
+        </div>
       </div>
     </main>
     <div id="contact_modal">
