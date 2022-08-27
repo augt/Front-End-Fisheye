@@ -1,7 +1,5 @@
 function mediaFactory(data) {
-    const { title, id, date, price } = data;
-
-    
+    const { title } = data;
 
     function getMediaCardDOM(photographerName) {
         const mediaCardDOM = document.createElement('div');

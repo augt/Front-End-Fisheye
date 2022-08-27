@@ -108,6 +108,7 @@ form input {
   margin-left: 100px;
   align-items: baseline;
   z-index: 99;
+  position: relative;
 }
 
 .sort-by-button {
@@ -195,15 +196,14 @@ form input {
 /* media list */
 
 .medias-list{
-  margin: 0 50px;
-  z-index: 90;
+  margin: 50px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
 .photographer-media {
-  margin: 50px 50px 0 50px ;
+  margin: 0 50px ;
 }
 
 .media-card img, .media-card video{
@@ -211,6 +211,8 @@ form input {
   width: 350px;
   object-fit: cover;
   border-radius: 5px;
+  z-index: 70;
+  position: relative;
 }
 
 .media-info {
@@ -243,9 +245,36 @@ form input {
 .button-like .fa-solid {
   margin-right: unset;
 }
-
+é
 .like-icon {
   margin-left: 6px;
   cursor: pointer;
 }
 
+/* likes total and price div */
+
+.likes-total-and-price {
+
+  position: fixed;
+  display: flex;
+  z-index: 90;
+  bottom: 0;
+  right: 30px;
+  width: 370px;
+  height: 60px;
+  background-color: #db8876;
+  border-radius: 5px 5px 0 0;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.total-like {
+  display: flex;
+  align-items: center;
+}
+
+.like-totalnumber {
+  margin-right: 6px;
+}
