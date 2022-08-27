@@ -66,9 +66,14 @@ displayPhotographerProfile();
 
 async function displayMedias() {
 
-    let {filteredMediasArray} = await getOnePhotographer();
+    let {filteredMediasArray, name} = await getOnePhotographer();
+    sortMedias(filteredMediasArray, "Popularité");
+    let mediaListContainer = document.querySelector(".medias-list");
+    renderMediaList(name);
 
-    function openCloseDropdownButton(/* medias */) {
+
+
+    function openCloseDropdownMenu() {
         const sortingBlock = document.querySelector(".sorting-block");
         const button = sortingBlock.querySelector(".dropdown-button");
         const buttonText = button.querySelector(".dropdown-button-text");
@@ -82,15 +87,55 @@ async function displayMedias() {
             const previousButtonValue = buttonText.textContent;
             buttonText.textContent = event.currentTarget.textContent;
             event.currentTarget.textContent = previousButtonValue;
-        //    sortMedias(medias, buttonText.textContent);
-        //    buildMedia(medias);
+            sortMedias(filteredMediasArray, buttonText.textContent);
+            console.log(filteredMediasArray);
+            mediaListContainer.innerHTML = "";
+            renderMediaList(name);
         //    initLightboxLinks();
           });
         })
     }
 
-    openCloseDropdownButton()
+    openCloseDropdownMenu();
+
+    function sortMedias(filteredMediasArray, sortingChoice) {
+        switch (sortingChoice) {
+            case "Date":
+              filteredMediasArray.sort((a, b) => new Date(a.date) - new Date(b.date));
+              break;
+            case "Titre":
+              filteredMediasArray.sort((a, b) => a.title.localeCompare(b.title));
+              break;
+            case "Popularité":
+              filteredMediasArray.sort((a, b) => b.likes - a.likes);
+          }
+    }
     
+    function renderMediaList(photographerName) {
+        
+        filteredMediasArray.forEach((media) => {
+            const mediaModel = mediaFactory(media);
+            const mediaCardDOM = mediaModel.getMediaCardDOM(photographerName);
+            const templatePhotographerMedia = `
+        <div class="photographer-media" id="media-${media.id}">
+          <a href="#" class="media-image" aria-label="${media.title}, closeup view">${mediaCardDOM.outerHTML}</a>
+          <div class="media-info">
+            <p class="media-title">${media.title}</p>
+            <div class="media-like">
+              <p class="like-number">${media.likes}</p>
+              <button class="button-like" type="button">
+                <em class="like-icon fa-solid fa-heart" aria-label="likes button"></em>
+              </button>
+            </div>
+          </div>
+        </div>
+        `;
+    mediaListContainer.insertAdjacentHTML(
+      "beforeend",
+      templatePhotographerMedia
+    );
+        });
+    }
 
 }
 

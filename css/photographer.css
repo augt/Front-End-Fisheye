@@ -99,7 +99,7 @@ form input {
     border-radius: 5px;
 }
 
-/* Bouton de tri */
+/* sorting button */
 
 .sorting-block,
 .sorting-block.open {
@@ -191,3 +191,61 @@ form input {
 .fa-solid {
   margin-right: 20px;
 }
+
+/* media list */
+
+.medias-list{
+  margin: 0 50px;
+  z-index: 90;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.photographer-media {
+  margin: 50px 50px 0 50px ;
+}
+
+.media-card img, .media-card video{
+  height: 300px;
+  width: 350px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.media-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.like-number,
+.media-title,
+.like-icon {
+  margin-block-start: 10px;
+  margin-block-end: 30px;
+  font-size: 20px;
+  color: #901c1c;
+}
+
+.media-like {
+  display: flex;
+}
+
+.like-number {
+  font-weight: 500;
+}
+
+.button-like {
+  border: unset;
+  background-color: unset;
+}
+
+.button-like .fa-solid {
+  margin-right: unset;
+}
+
+.like-icon {
+  margin-left: 6px;
+  cursor: pointer;
+}
+
