@@ -16,7 +16,7 @@
         <img src="assets/images/logo.png" class="logo" alt="logo"/>
       </a> 
     </header>
-    <main id="main">
+    <main id="main" aria-hidden="false">
       <div class="photograph-header">
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </div>
@@ -41,7 +41,7 @@
       </div>
       <div class="likes-total-and-price"></div>
     </main>
-    <div id="contact_modal">
+    <div id="contact_modal" aria-hidden="true" role="dialog">
 			<div class="modal">
 				<header>
           <h2>Contactez-moi</h2>
@@ -49,8 +49,14 @@
         </header>
 				<form>
 					<div>
-						<label>Prénom</label>
-						<input />
+						<label for="first-name">Prénom</label>
+						<input id="first-name" name="first-name" type="text" aria-label="prénom"/>
+            <label for="last-name">Nom</label>
+						<input id="last-name" name="last-name" type="text" aria-label="nom"/>
+            <label for="email">Email</label>
+						<input id="email" type="email" name="email"aria-label="email"/>
+            <label for="message">Votre message</label>
+            <textarea name="message" id="message" cols="30" rows="10" aria-label="votre message"></textarea>
 					</div>
           <button class="contact_button">Envoyer</button>
 				</form>

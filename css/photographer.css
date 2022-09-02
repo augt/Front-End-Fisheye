@@ -45,6 +45,16 @@
     cursor: pointer;
 }
 
+    /* contact modal form */
+
+#contact_modal{
+  position: absolute;
+  top:100px;
+  left:0;
+  right: 0;
+  z-index: 100;
+}
+
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
@@ -97,6 +107,14 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 30px;
+}
+
+form textarea {
+  width: 100%;
+  border-radius: 5px;
+  font-size: 30px;
 }
 
 /* sorting button */
@@ -225,7 +243,7 @@ form input {
 .like-icon {
   margin-block-start: 10px;
   margin-block-end: 30px;
-  font-size: 20px;
+  font-size: 17px;
   color: #901c1c;
 }
 
@@ -266,7 +284,7 @@ form input {
   border-radius: 5px 5px 0 0;
   align-items: center;
   justify-content: space-around;
-  font-size: 20px;
+  font-size: 19px;
   font-weight: 500;
 }
 
@@ -278,3 +296,5 @@ form input {
 .like-totalnumber {
   margin-right: 6px;
 }
+
+
