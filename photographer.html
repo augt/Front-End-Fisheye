@@ -2,29 +2,44 @@
 <html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Fisheye - photographe </title>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link
+      href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Fisheye - photographe</title>
   </head>
   <body>
     <header>
       <a href="index.html" aria-label="Page d'accueil">
-        <img src="assets/images/logo.png" class="logo" alt="logo"/>
-      </a> 
+        <img src="assets/images/logo.png" class="logo" alt="logo" />
+      </a>
     </header>
     <main id="main" aria-hidden="false">
       <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button class="contact_button" onclick="displayModal()">
+          Contactez-moi
+        </button>
       </div>
       <!-- sorting options -->
       <div class="sorting-block">
         <p>Trier par</p>
         <div class="sort-by-button" aria-haspopup="listbox" role="listbox">
-          <button class="dropdown-button" type="button" id="order-by" role="option" aria-selected="true">
+          <button
+            class="dropdown-button"
+            type="button"
+            id="order-by"
+            role="option"
+            aria-selected="true"
+          >
             <span class="dropdown-button-text">Popularité</span>
             <em class="arrow-down fa-solid fa-angle-down"></em>
             <em class="fa-solid fa-angle-up arrow-up"></em>
@@ -37,31 +52,50 @@
           </div>
         </div>
       </div>
-      <div class="medias-list"> 
-      </div>
+      <div class="medias-list"></div>
       <div class="likes-total-and-price"></div>
     </main>
     <div id="contact_modal" aria-hidden="true" role="dialog">
-			<div class="modal">
-				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+      <div class="modal">
+        <header>
+          <h2 id="contact-photographer-name"></h2>
+          <img
+            src="assets/icons/close.svg"
+            onclick="closeModal()"
+            alt="fermer formulaire contact"
+          />
         </header>
-				<form>
-					<div>
-						<label for="first-name">Prénom</label>
-						<input id="first-name" name="first-name" type="text" aria-label="prénom"/>
+        <form>
+          <div>
+            <label for="first-name">Prénom</label>
+            <input
+              id="first-name"
+              name="first-name"
+              type="text"
+              aria-label="prénom"
+            />
             <label for="last-name">Nom</label>
-						<input id="last-name" name="last-name" type="text" aria-label="nom"/>
+            <input
+              id="last-name"
+              name="last-name"
+              type="text"
+              aria-label="nom"
+            />
             <label for="email">Email</label>
-						<input id="email" type="email" name="email"aria-label="email"/>
+            <input id="email" type="email" name="email" aria-label="email" />
             <label for="message">Votre message</label>
-            <textarea name="message" id="message" cols="30" rows="10" aria-label="votre message"></textarea>
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
+            <textarea
+              name="message"
+              id="message"
+              cols="30"
+              rows="10"
+              aria-label="votre message"
+            ></textarea>
+          </div>
+          <button class="contact_button" id="submit-message" type="submit" aria-label="send">Envoyer</button>
+        </form>
+      </div>
+    </div>
     <script src="/scripts/factories/media.js"></script>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>

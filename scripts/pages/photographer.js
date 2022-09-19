@@ -40,6 +40,7 @@ async function displayPhotographerProfile() {
 
   const h1 = document.createElement("h1");
   h1.textContent = name;
+  h1.setAttribute("id","header-photographer-name")
   const locationDiv = document.createElement("div");
   locationDiv.classList.add("location");
   locationDiv.textContent = city + ", " + country;

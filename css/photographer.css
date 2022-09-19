@@ -1,114 +1,120 @@
 #contact_modal {
-    display: none;
+  display: none;
 }
 
 .photograph-header {
-    background-color: #FAFAFA;
-    height: 300px;
-    margin: 0 100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 40px;
+  background-color: #fafafa;
+  height: 300px;
+  margin: 0 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
 }
 
 .photograph-header img {
-    height: 200px;
-    width: 200px;
-    border-radius: 100px;
-    object-fit: cover;
+  height: 200px;
+  width: 200px;
+  border-radius: 100px;
+  object-fit: cover;
 }
 
 .photograph-header h1 {
-    margin-right: 20px;
-    margin-bottom: 5px;
-    color: #D3573C;
-    font-size: 50px;
-    font-weight: 400;
+  margin-right: 20px;
+  margin-bottom: 5px;
+  color: #d3573c;
+  font-size: 50px;
+  font-weight: 400;
 }
 
 .photograph-header .location {
-    color: #901C1C;
-    margin-bottom: 15px;
+  color: #901c1c;
+  margin-bottom: 15px;
 }
 
 .contact_button {
-    font-size: 20px;
-    font-weight: bold;
-    color: white;
-    padding: 11px;
-    width: 170px;
-    height: 70px;
-    border: none;
-    background-color: #901C1C;
-    border-radius: 5px;
-    cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  padding: 11px;
+  width: 170px;
+  height: 70px;
+  border: none;
+  background-color: #901c1c;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-    /* contact modal form */
+/* contact modal form */
 
-#contact_modal{
+#contact_modal {
   position: absolute;
-  top:100px;
-  left:0;
+  top: 100px;
+  left: 0;
   right: 0;
   z-index: 100;
 }
 
 .modal {
-    border-radius: 5px;
-    background-color: #DB8876;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 35px;
-    margin: auto;
+  border-radius: 5px;
+  background-color: #db8876;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 35px;
+  margin: auto;
 }
 
 .modal header {
-    justify-content: space-between;
-    width: 100%;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .modal header img {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .modal header h2 {
-    font-size: 64px;
-    font-weight: normal;
-    text-align: center;
+  font-size: 64px;
+  font-weight: normal;
+  text-align: left;
+  margin-bottom: 0;
+}
+
+.modal .modal-header {
+  height: 100%;
 }
 
 form {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 90px;
 }
 
 form label {
-    color: #312E2E;
-    font-size: 36px;
+  color: #312e2e;
+  font-size: 36px;
 }
 
 form div {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: self-start;
-    margin-bottom: 26px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: self-start;
+  margin-bottom: 26px;
 }
 
 form input {
-    width: 100%;
-    height: 68px;
-    border: none;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    font-size: 30px;
+  width: 100%;
+  height: 68px;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 30px;
 }
 
 form textarea {
@@ -213,7 +219,7 @@ form textarea {
 
 /* media list */
 
-.medias-list{
+.medias-list {
   margin: 50px;
   display: flex;
   flex-wrap: wrap;
@@ -221,10 +227,11 @@ form textarea {
 }
 
 .photographer-media {
-  margin: 0 50px ;
+  margin: 0 50px;
 }
 
-.media-card img, .media-card video{
+.media-card img,
+.media-card video {
   height: 300px;
   width: 350px;
   object-fit: cover;
@@ -263,8 +270,7 @@ form textarea {
 .button-like .fa-solid {
   margin-right: unset;
 }
-é
-.like-icon {
+é .like-icon {
   margin-left: 6px;
   cursor: pointer;
 }
@@ -272,7 +278,6 @@ form textarea {
 /* likes total and price div */
 
 .likes-total-and-price {
-
   position: fixed;
   display: flex;
   z-index: 90;
@@ -296,5 +301,3 @@ form textarea {
 .like-totalnumber {
   margin-right: 6px;
 }
-
-
