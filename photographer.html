@@ -20,12 +20,12 @@
   <body>
     <header>
       <a href="index.html" aria-label="Page d'accueil">
-        <img src="assets/images/logo.png" class="logo" alt="logo" />
+        <img src="assets/images/logo.png" class="logo" alt="FishEye Home page" />
       </a>
     </header>
     <main id="main" aria-hidden="false">
       <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">
+        <button class="contact_button" onclick="displayModal()" aria-label="Contact Me">
           Contactez-moi
         </button>
       </div>
@@ -55,14 +55,16 @@
       <div class="medias-list"></div>
       <div class="likes-total-and-price"></div>
     </main>
-    <div id="contact_modal" aria-hidden="true" role="dialog">
+    <!-- contact modal -->
+    <div id="contact_modal" aria-hidden="true" role="dialog" aria-labelledby="contact-photographer-name">
       <div class="modal">
         <header>
           <h2 id="contact-photographer-name"></h2>
           <img
             src="assets/icons/close.svg"
             onclick="closeModal()"
-            alt="fermer formulaire contact"
+            role="button"
+            alt="Close contact form"
           />
         </header>
         <form>
@@ -73,7 +75,7 @@
               name="first-name"
               type="text"
               aria-label="prénom"
-            />
+            />contact-photographer-name
             <label for="last-name">Nom</label>
             <input
               id="last-name"
@@ -95,6 +97,10 @@
           <button class="contact_button" id="submit-message" type="submit" aria-label="send">Envoyer</button>
         </form>
       </div>
+    </div>
+    <!-- lightbox -->
+    <div id="lightbox" aria-hidden="true" role="dialog">
+      
     </div>
     <script src="/scripts/factories/media.js"></script>
     <script src="/scripts/pages/photographer.js"></script>

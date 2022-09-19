@@ -121,7 +121,7 @@ async function displayMedias() {
             <div class="media-like">
               <p class="like-number">${media.likes}</p>
               <button class="button-like" type="button">
-                <em class="like-icon fa-solid fa-heart" aria-label="likes button"></em>
+                <em class="like-icon fa-solid fa-heart" aria-label="likes"></em>
               </button>
             </div>
           </div>
