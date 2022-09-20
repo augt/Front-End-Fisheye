@@ -112,7 +112,7 @@ async function displayMedias() {
 
   function renderMediaList(photographerName) {
     filteredMediasArray.forEach((media) => {
-      const mediaModel = mediaFactory(media);
+      const mediaModel = mediaFactory(media, false);
       const mediaCardDOM = mediaModel.getMediaCardDOM(photographerName);
       const templatePhotographerMedia = `
         <div class="photographer-media" id="${media.id}">
@@ -139,6 +139,9 @@ async function displayMedias() {
 
     let lightboxItemsList = document.querySelectorAll(".lightbox-item");
 
+    let main = document.querySelector("main");
+    let header = document.querySelector("header")
+
     for (let link of lightboxLinkList) {
       link.addEventListener("click", function (e) {
         e.preventDefault();
@@ -146,7 +149,11 @@ async function displayMedias() {
 
         lightboxListContainer.style.display = "block";
 
-        lightboxItemsList[slidePosition].style.display = "block";
+        main.style.display = "none";
+        header.style.display = "none";
+
+
+        lightboxItemsList[slidePosition].style.display = "flex";
       });
     }
 
@@ -175,9 +182,9 @@ async function displayMedias() {
   // MANAGING LIGHTBOX
 
   function generateLightBoxList(photographerName) {
-    // generate html for each media item
+
     filteredMediasArray.forEach((item, index) => {
-      const mediaModel = mediaFactory(item);
+      const mediaModel = mediaFactory(item, true);
       const mediaCardDOM = mediaModel.getMediaCardDOM(photographerName);
       const templateMediaLightboxItem = `
         <div id="${item.id}" class="lightbox-item">
@@ -208,6 +215,9 @@ async function displayMedias() {
 
     let closeLightboxButtonList = document.querySelectorAll(".lightbox-close");
 
+    let main = document.querySelector("main");
+    let header = document.querySelector("header")
+
     for (let closeButton of closeLightboxButtonList) {
       closeButton.addEventListener("click", function (e) {
         e.preventDefault
@@ -217,6 +227,9 @@ async function displayMedias() {
         lightboxListContainer.style.display = "none";
 
         lightboxItemsList[slidePosition].style.display = "none";
+
+        main.style.display = "unset";
+        header.style.display = "unset";
 
       });
     }

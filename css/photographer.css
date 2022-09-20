@@ -303,7 +303,7 @@ form textarea {
 
 #lightbox_modal {
   display: none;
-  position: absolute;
+  position: fixed;
   top: 100px;
   left: 0;
   right: 0;
@@ -316,6 +316,49 @@ form textarea {
 
 .lightbox-item {
   display: none;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
 }
+
+.lightbox-card img,
+.lightbox-card video {
+  height: 450px;
+  width: 525px;  color: #901c1c;
+  object-fit: cover;
+  border-radius: 5px;
+  z-index: 70;
+  position: relative;
+}
+
+.lightbox-item .lightbox-next {
+  color: #901c1c;
+  font-size: 40px;
+  margin-left: 20px
+}
+
+.lightbox-item .lightbox-prev {
+  color: #901c1c;
+  font-size: 40px;
+  margin-right: 10px;
+}
+
+.lightbox-item .item-title {
+  color: #901c1c;
+  margin-top: 5px;
+}
+
+.lightbox-item button {
+  cursor: pointer;
+  margin-left: -45px;
+  align-self: flex-start;
+  border: none;
+  background: transparent;
+  font-size: 40px;
+  color: #901c1c;
+}
+
+
 
 
