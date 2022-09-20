@@ -19,9 +19,9 @@ function mediaFactory(data) {
             let video = document.createElement('video');
             video.removeAttribute("controls");
             mediaCardDOM.appendChild(video);
-            let source = document.createElement('source')
-            source.setAttribute("src", mediaUrl)
-            source.setAttribute("type", "video/mp4")
+            let source = document.createElement('source');
+            source.setAttribute("src", mediaUrl);
+            source.setAttribute("type", "video/mp4");
             video.appendChild(source);
         }
 

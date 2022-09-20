@@ -40,7 +40,7 @@ async function displayPhotographerProfile() {
 
   const h1 = document.createElement("h1");
   h1.textContent = name;
-  h1.setAttribute("id","header-photographer-name")
+  h1.setAttribute("id", "header-photographer-name");
   const locationDiv = document.createElement("div");
   locationDiv.classList.add("location");
   locationDiv.textContent = city + ", " + country;
@@ -59,8 +59,6 @@ async function displayPhotographerProfile() {
 
 displayPhotographerProfile();
 
-
-
 displayMedias();
 
 async function displayMedias() {
@@ -68,6 +66,8 @@ async function displayMedias() {
   sortMedias(filteredMediasArray, "Popularité");
   let mediaListContainer = document.querySelector(".medias-list");
   let LikesTotalAndPriceDiv = document.querySelector(".likes-total-and-price");
+  let lightboxListContainer = document.querySelector("#lightbox_modal");
+  generateLightBoxList(name);
   renderMediaList(name);
 
   function openCloseDropdownMenu() {
@@ -87,9 +87,10 @@ async function displayMedias() {
         sortMedias(filteredMediasArray, buttonText.textContent);
         console.log(filteredMediasArray);
         mediaListContainer.innerHTML = "";
-        LikesTotalAndPriceDiv.innerHTML= "";
+        LikesTotalAndPriceDiv.innerHTML = "";
+        lightboxListContainer.innerHTML = "";
+        generateLightBoxList(name);
         renderMediaList(name);
-        //    initLightboxLinks();
       });
     });
   }
@@ -114,7 +115,7 @@ async function displayMedias() {
       const mediaModel = mediaFactory(media);
       const mediaCardDOM = mediaModel.getMediaCardDOM(photographerName);
       const templatePhotographerMedia = `
-        <div class="photographer-media" id="media-${media.id}">
+        <div class="photographer-media" id="${media.id}">
           <a href="#" class="media-image" aria-label="${media.title}, closeup view">${mediaCardDOM.outerHTML}</a>
           <div class="media-info">
             <p class="media-title">${media.title}</p>
@@ -132,6 +133,24 @@ async function displayMedias() {
         templatePhotographerMedia
       );
     });
+
+    // LINKS TO LIGHTBOX
+    let lightboxLinkList = document.querySelectorAll(`.media-image`);
+
+    let lightboxItemsList = document.querySelectorAll(".lightbox-item");
+
+    for (let link of lightboxLinkList) {
+      link.addEventListener("click", function (e) {
+        e.preventDefault();
+        let slidePosition = Array.from(lightboxLinkList).indexOf(link);
+
+        lightboxListContainer.style.display = "block";
+
+        lightboxItemsList[slidePosition].style.display = "block";
+      });
+    }
+
+    // DISPLAY LIKES TOTAL AND PRICE
     renderLikesTotalAndPrice();
   }
 
@@ -152,6 +171,54 @@ async function displayMedias() {
   `;
     LikesTotalAndPriceDiv.insertAdjacentHTML("beforeend", template);
   }
+
+  // MANAGING LIGHTBOX
+
+  function generateLightBoxList(photographerName) {
+    // generate html for each media item
+    filteredMediasArray.forEach((item, index) => {
+      const mediaModel = mediaFactory(item);
+      const mediaCardDOM = mediaModel.getMediaCardDOM(photographerName);
+      const templateMediaLightboxItem = `
+        <div id="${item.id}" class="lightbox-item">
+        <a class="lightbox-prev" title="previous image" href="#" aria-label="Previous image">
+          <em class="fa-solid fa-angle-left"></em>
+        </a>
+        <div>
+          ${mediaCardDOM.outerHTML}
+          
+          <p class="item-title">${item.title}</p>
+        </div>
+        <a class="lightbox-next" href="#" aria-label="Next image" title="next image">
+        <em class="fa-solid fa-angle-right"></em>
+        </a>
+        <button class="lightbox-close" title="next image" aria-label="Close dialog"><em class="fa-solid fa-xmark"
+          aria-label="close"></em></button>
+        </div>
+        `;
+      lightboxListContainer.insertAdjacentHTML(
+        "beforeend",
+        templateMediaLightboxItem
+      );
+    });
+
+    //manage closing lightbox modal
+
+    let lightboxItemsList = document.querySelectorAll(".lightbox-item");
+
+    let closeLightboxButtonList = document.querySelectorAll(".lightbox-close");
+
+    for (let closeButton of closeLightboxButtonList) {
+      closeButton.addEventListener("click", function (e) {
+        e.preventDefault
+
+        let slidePosition = Array.from(closeLightboxButtonList).indexOf(closeButton);
+
+        lightboxListContainer.style.display = "none";
+
+        lightboxItemsList[slidePosition].style.display = "none";
+
+      });
+    }
+  }
 }
-
-

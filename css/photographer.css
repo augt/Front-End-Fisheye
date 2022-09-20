@@ -1,7 +1,3 @@
-#contact_modal {
-  display: none;
-}
-
 .photograph-header {
   background-color: #fafafa;
   height: 300px;
@@ -48,6 +44,7 @@
 /* contact modal form */
 
 #contact_modal {
+  display: none;
   position: absolute;
   top: 100px;
   left: 0;
@@ -301,3 +298,24 @@ form textarea {
 .like-totalnumber {
   margin-right: 6px;
 }
+
+/* LIGHTBOX MODAL */
+
+#lightbox_modal {
+  display: none;
+  position: absolute;
+  top: 100px;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+#lightbox_modal .close-lightbox {
+  cursor: pointer;
+}
+
+.lightbox-item {
+  display: none;
+}
+
+
