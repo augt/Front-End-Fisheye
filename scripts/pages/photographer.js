@@ -16,15 +16,11 @@ async function getOnePhotographer() {
 
   let photographerInfos = filteredPhotographersArray[0];
 
-  console.log(photographerInfos);
-
   let filteredMediasArray = data.media.filter(
     (file) => file.photographerId === id
   );
-  console.log(filteredMediasArray);
 
   let photographerFullData = { ...photographerInfos, filteredMediasArray };
-  console.log(photographerFullData);
 
   return photographerFullData;
 }
@@ -85,7 +81,6 @@ async function displayMedias() {
         buttonText.textContent = event.currentTarget.textContent;
         event.currentTarget.textContent = previousButtonValue;
         sortMedias(filteredMediasArray, buttonText.textContent);
-        console.log(filteredMediasArray);
         mediaListContainer.innerHTML = "";
         LikesTotalAndPriceDiv.innerHTML = "";
         lightboxListContainer.innerHTML = "";
@@ -134,7 +129,7 @@ async function displayMedias() {
       );
     });
 
-    // LINKS TO LIGHTBOX
+    // Manage Lightbox opening
     let lightboxLinkList = document.querySelectorAll(`.media-image`);
 
     let lightboxItemsList = document.querySelectorAll(".lightbox-item");
@@ -164,6 +159,31 @@ async function displayMedias() {
 
     // DISPLAY LIKES TOTAL AND PRICE
     renderLikesTotalAndPrice();
+
+    // Manage clicks on like button
+    let likeButtonsList = document.querySelectorAll(".button-like");
+
+    let likeCounterList = document.querySelectorAll(".like-number");
+
+    let totalLikeCounter = document.querySelector(".like-total-number");
+
+    for (let likeButton of likeButtonsList) {
+      likeButton.addEventListener("click", function (e) {
+        if (!likeButton.dataset.liked) {
+          let buttonIndex = Array.from(likeButtonsList).indexOf(likeButton);
+
+          let likeScore = parseInt(likeCounterList[buttonIndex].textContent);
+
+          let totalLikeScore = parseInt(totalLikeCounter.textContent);
+
+          likeCounterList[buttonIndex].textContent = likeScore + 1;
+
+          totalLikeCounter.textContent = totalLikeScore + 1;
+
+          likeButton.dataset.liked = true;
+        }
+      });
+    }
   }
 
   function renderLikesTotalAndPrice() {
@@ -176,7 +196,7 @@ async function displayMedias() {
 
     const template = `
     <div class="total-like">
-      <p class="like-totalnumber">${likesSum}</p>
+      <p class="like-total-number">${likesSum}</p>
       <i class="fa-solid fa-heart"></i>
     </div>
     <p class="salary-per-day">${price}€ / jour</p>
@@ -213,7 +233,7 @@ async function displayMedias() {
       );
     });
 
-    //manage closing lightbox modal
+    // manage closing lightbox modal
 
     let lightboxItemsList = document.querySelectorAll(".lightbox-item");
 
@@ -227,26 +247,24 @@ async function displayMedias() {
     }
 
     function closeLightbox(closeLightboxButtonsList, closeButton) {
-              let slidePosition = Array.from(closeLightboxButtonsList).indexOf(
-                closeButton
-              );
+      let slidePosition = Array.from(closeLightboxButtonsList).indexOf(
+        closeButton
+      );
 
-              lightboxListContainer.setAttribute("aria-hidden", "true");
-              lightboxItemsList[slidePosition].setAttribute("aria-hidden", "true");
-              main.setAttribute("aria-hidden", "false");
+      lightboxListContainer.setAttribute("aria-hidden", "true");
+      lightboxItemsList[slidePosition].setAttribute("aria-hidden", "true");
+      main.setAttribute("aria-hidden", "false");
 
-              lightboxListContainer.style.display = "none";
+      lightboxListContainer.style.display = "none";
 
-              lightboxItemsList[slidePosition].style.display = "none";
-              getTabbableElements(document).forEach(
-                (tabbable) => (tabbable.tabIndex = 0)
-              );
-              getTabbableElements(lightboxItemsList[slidePosition]).forEach(
-                (tabbable) => (tabbable.tabIndex = -1)
-              );
-            }
-
-
+      lightboxItemsList[slidePosition].style.display = "none";
+      getTabbableElements(document).forEach(
+        (tabbable) => (tabbable.tabIndex = 0)
+      );
+      getTabbableElements(lightboxItemsList[slidePosition]).forEach(
+        (tabbable) => (tabbable.tabIndex = -1)
+      );
+    }
 
     // manage click on lightbox next button
 
@@ -316,7 +334,8 @@ async function displayMedias() {
         (tabbable) => (tabbable.tabIndex = 0)
       );
     }
-    // manage click on keyboard arrows
+
+    // manage click on keyboard arrows and escape key
 
     document.addEventListener("keyup", (e) => {
       let activeLightboxIndex = Array.from(lightboxItemsList).findIndex(
@@ -331,9 +350,12 @@ async function displayMedias() {
         showPrevSlide(prevButtonsList, prevButtonsList[activeLightboxIndex]);
       }
 
-       if (e.key === "Escape") {
-        closeLightbox(closeLightboxButtonsList, closeLightboxButtonsList[activeLightboxIndex])
-      } 
+      if (e.key === "Escape") {
+        closeLightbox(
+          closeLightboxButtonsList,
+          closeLightboxButtonsList[activeLightboxIndex]
+        );
+      }
     });
   }
 }

@@ -262,6 +262,7 @@ form textarea {
 .button-like {
   border: unset;
   background-color: unset;
+  cursor: pointer;
 }
 
 .button-like .fa-solid {
@@ -295,7 +296,7 @@ form textarea {
   align-items: center;
 }
 
-.like-totalnumber {
+.like-total-number {
   margin-right: 6px;
 }
 
