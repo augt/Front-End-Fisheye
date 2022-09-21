@@ -25,8 +25,8 @@ function closeModal() {
   getTabbableElements(document).forEach((tabbable) => (tabbable.tabIndex = 0));
 }
 
-document.addEventListener("keyup", (event) => {
-  if (modal.ariaHidden === "false" && event.key === "Escape") {
+document.addEventListener("keyup", (e) => {
+  if (modal.ariaHidden === "false" && e.key === "Escape") {
     closeModal();
   }
 });

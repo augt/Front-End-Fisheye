@@ -139,15 +139,26 @@ async function displayMedias() {
 
     let lightboxItemsList = document.querySelectorAll(".lightbox-item");
 
+    let main = document.querySelector("main");
+
     for (let link of lightboxLinkList) {
       link.addEventListener("click", function (e) {
         e.preventDefault();
         let slidePosition = Array.from(lightboxLinkList).indexOf(link);
 
+        lightboxListContainer.setAttribute("aria-hidden", "false");
+        lightboxItemsList[slidePosition].setAttribute("aria-hidden", "false");
+        main.setAttribute("aria-hidden", "true");
+
         lightboxListContainer.style.display = "block";
-
-
         lightboxItemsList[slidePosition].style.display = "flex";
+
+        getTabbableElements(document).forEach(
+          (tabbable) => (tabbable.tabIndex = -1)
+        );
+        getTabbableElements(lightboxItemsList[slidePosition]).forEach(
+          (tabbable) => (tabbable.tabIndex = 0)
+        );
       });
     }
 
@@ -176,13 +187,12 @@ async function displayMedias() {
   // MANAGING LIGHTBOX
 
   function generateLightBoxList(photographerName) {
-
     filteredMediasArray.forEach((item, index) => {
       const mediaModel = mediaFactory(item, true);
       const mediaCardDOM = mediaModel.getMediaCardDOM(photographerName);
       const templateMediaLightboxItem = `
-        <div id="${item.id}" class="lightbox-item">
-        <a class="lightbox-prev" title="previous image" href="#" aria-label="Previous image">
+        <div id="${item.id}" class="lightbox-item" aria-label="Image closeup view" aria-hidden="true">
+        <a class="lightbox-prev" title="Previous image" href="#" aria-label="Previous image">
           <em class="fa-solid fa-angle-left"></em>
         </a>
         <div>
@@ -190,7 +200,7 @@ async function displayMedias() {
           
           <p class="item-title">${item.title}</p>
         </div>
-        <a class="lightbox-next" href="#" aria-label="Next image" title="next image">
+        <a class="lightbox-next" href="#" aria-label="Next image" title="Next image">
         <em class="fa-solid fa-angle-right"></em>
         </a>
         <button class="lightbox-close" title="next image" aria-label="Close dialog"><em class="fa-solid fa-xmark"
@@ -211,14 +221,25 @@ async function displayMedias() {
 
     for (let closeButton of closeLightboxButtonsList) {
       closeButton.addEventListener("click", function (e) {
-        e.preventDefault
+        e.preventDefault;
 
-        let slidePosition = Array.from(closeLightboxButtonsList).indexOf(closeButton);
+        let slidePosition = Array.from(closeLightboxButtonsList).indexOf(
+          closeButton
+        );
+
+        lightboxListContainer.setAttribute("aria-hidden", "true");
+        lightboxItemsList[slidePosition].setAttribute("aria-hidden", "true");
+        main.setAttribute("aria-hidden", "false");
 
         lightboxListContainer.style.display = "none";
 
         lightboxItemsList[slidePosition].style.display = "none";
-
+        getTabbableElements(document).forEach(
+          (tabbable) => (tabbable.tabIndex = 0)
+        );
+        getTabbableElements(lightboxItemsList[slidePosition]).forEach(
+          (tabbable) => (tabbable.tabIndex = -1)
+        );
       });
     }
 
@@ -226,51 +247,88 @@ async function displayMedias() {
 
     let nextButtonsList = document.querySelectorAll(".lightbox-next");
 
-    for (let nextButton of nextButtonsList){
+    for (let nextButton of nextButtonsList) {
       nextButton.addEventListener("click", function (e) {
-        e.preventDefault
-
-        let slidePosition = Array.from(nextButtonsList).indexOf(nextButton);
-        
-        let slideIndexToShow = slidePosition + 1;
-        console.log(nextButtonsList.length)
-
-        if (slideIndexToShow === nextButtonsList.length){
-          slideIndexToShow = 0;
-        }
-
-        lightboxItemsList[slidePosition].style.display = "none";
-
-        lightboxItemsList[slideIndexToShow].style.display = "flex";
-
+        e.preventDefault;
+        showNextSlide(nextButtonsList, nextButton);
       });
+    }
 
+    function showNextSlide(nextButtonsList, nextButton) {
+      let slidePosition = Array.from(nextButtonsList).indexOf(nextButton);
+
+      let slideIndexToShow = slidePosition + 1;
+
+      if (slideIndexToShow === nextButtonsList.length) {
+        slideIndexToShow = 0;
+      }
+
+      lightboxItemsList[slidePosition].setAttribute("aria-hidden", "true");
+      lightboxItemsList[slideIndexToShow].setAttribute("aria-hidden", "false");
+
+      lightboxItemsList[slidePosition].style.display = "none";
+
+      lightboxItemsList[slideIndexToShow].style.display = "flex";
+      getTabbableElements(document).forEach(
+        (tabbable) => (tabbable.tabIndex = -1)
+      );
+      getTabbableElements(lightboxItemsList[slideIndexToShow]).forEach(
+        (tabbable) => (tabbable.tabIndex = 0)
+      );
     }
 
     // manage click on lightbox previous button
 
     let prevButtonsList = document.querySelectorAll(".lightbox-prev");
 
-    for (let prevButton of prevButtonsList){
+    for (let prevButton of prevButtonsList) {
       prevButton.addEventListener("click", function (e) {
-        e.preventDefault
-
-        let slidePosition = Array.from(prevButtonsList).indexOf(prevButton);
-        
-        let slideIndexToShow = slidePosition - 1;
-        console.log(prevButtonsList.length)
-
-        if (slideIndexToShow === -1 ){
-          slideIndexToShow = prevButtonsList.length -1;
-        }
-
-        lightboxItemsList[slidePosition].style.display = "none";
-
-        lightboxItemsList[slideIndexToShow].style.display = "flex";
-
+        e.preventDefault;
+        showPrevSlide(prevButtonsList, prevButton);
       });
-
     }
 
+    function showPrevSlide(prevButtonsList, prevButton) {
+      let slidePosition = Array.from(prevButtonsList).indexOf(prevButton);
+
+      let slideIndexToShow = slidePosition - 1;
+
+      if (slideIndexToShow === -1) {
+        slideIndexToShow = prevButtonsList.length - 1;
+      }
+
+      lightboxItemsList[slidePosition].setAttribute("aria-hidden", "true");
+      lightboxItemsList[slideIndexToShow].setAttribute("aria-hidden", "false");
+
+      lightboxItemsList[slidePosition].style.display = "none";
+
+      lightboxItemsList[slideIndexToShow].style.display = "flex";
+
+      getTabbableElements(document).forEach(
+        (tabbable) => (tabbable.tabIndex = -1)
+      );
+      getTabbableElements(lightboxItemsList[slideIndexToShow]).forEach(
+        (tabbable) => (tabbable.tabIndex = 0)
+      );
+    }
+    // manage click on keyboard arrows
+
+    document.addEventListener("keyup", (e) => {
+
+      let activeLightboxIndex = Array.from(lightboxItemsList).findIndex(
+        (lightbox) => lightbox.ariaHidden === "false"
+      );
+
+      if (
+        e.key === "ArrowRight"
+      ) {
+        showNextSlide(nextButtonsList, nextButtonsList[activeLightboxIndex]);
+      }
+
+      if (e.key === "ArrowLeft") {
+        showPrevSlide(prevButtonsList, prevButtonsList[activeLightboxIndex]);
+      }
+
+    });
   }
 }

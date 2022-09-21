@@ -22,6 +22,7 @@ function mediaFactory(data, isLightbox) {
         } else {
             mediaUrl = `assets/FishEye_Photos/Sample Photos/${photographerName}/${data.video}`;
             let video = document.createElement('video');
+            video.setAttribute("aria-label", title)
             if (isLightbox===true){
                 video.setAttribute("controls", true);
             };
