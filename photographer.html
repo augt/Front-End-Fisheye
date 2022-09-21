@@ -20,12 +20,20 @@
   <body>
     <header>
       <a href="index.html" aria-label="Page d'accueil">
-        <img src="assets/images/logo.png" class="logo" alt="FishEye Home page" />
+        <img
+          src="assets/images/logo.png"
+          class="logo"
+          alt="FishEye Home page"
+        />
       </a>
     </header>
     <main id="main" aria-hidden="false">
       <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()" aria-label="Contact Me">
+        <button
+          class="contact_button"
+          onclick="displayModal()"
+          aria-label="Contact Me"
+        >
           Contactez-moi
         </button>
       </div>
@@ -56,7 +64,12 @@
       <div class="likes-total-and-price"></div>
     </main>
     <!-- contact modal -->
-    <div id="contact_modal" aria-hidden="true" role="dialog" aria-labelledby="contact-photographer-name">
+    <div
+      id="contact_modal"
+      aria-hidden="true"
+      role="dialog"
+      aria-labelledby="contact-photographer-name"
+    >
       <div class="modal">
         <header>
           <h2 id="contact-photographer-name"></h2>
@@ -94,13 +107,19 @@
               aria-label="votre message"
             ></textarea>
           </div>
-          <button class="contact_button" id="submit-message" type="submit" aria-label="send">Envoyer</button>
+          <button
+            class="contact_button"
+            id="submit-message"
+            type="submit"
+            aria-label="send"
+          >
+            Envoyer
+          </button>
         </form>
       </div>
     </div>
     <!-- lightbox -->
-    <div id="lightbox_modal" aria-hidden="true" role="dialog">
-    </div>
+    <div id="lightbox_modal" aria-hidden="true" role="dialog"></div>
     <script src="/scripts/factories/media.js"></script>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>

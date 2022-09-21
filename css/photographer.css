@@ -328,7 +328,8 @@ form textarea {
 .lightbox-card img,
 .lightbox-card video {
   height: 450px;
-  width: 525px;  color: #901c1c;
+  width: 525px;
+  color: #901c1c;
   object-fit: cover;
   border-radius: 5px;
   z-index: 70;
@@ -338,7 +339,7 @@ form textarea {
 .lightbox-item .lightbox-next {
   color: #901c1c;
   font-size: 40px;
-  margin-left: 20px
+  margin-left: 20px;
 }
 
 .lightbox-item .lightbox-prev {
@@ -361,7 +362,3 @@ form textarea {
   font-size: 40px;
   color: #901c1c;
 }
-
-
-
-
