@@ -222,26 +222,31 @@ async function displayMedias() {
     for (let closeButton of closeLightboxButtonsList) {
       closeButton.addEventListener("click", function (e) {
         e.preventDefault;
-
-        let slidePosition = Array.from(closeLightboxButtonsList).indexOf(
-          closeButton
-        );
-
-        lightboxListContainer.setAttribute("aria-hidden", "true");
-        lightboxItemsList[slidePosition].setAttribute("aria-hidden", "true");
-        main.setAttribute("aria-hidden", "false");
-
-        lightboxListContainer.style.display = "none";
-
-        lightboxItemsList[slidePosition].style.display = "none";
-        getTabbableElements(document).forEach(
-          (tabbable) => (tabbable.tabIndex = 0)
-        );
-        getTabbableElements(lightboxItemsList[slidePosition]).forEach(
-          (tabbable) => (tabbable.tabIndex = -1)
-        );
+        closeLightbox(closeLightboxButtonsList, closeButton);
       });
     }
+
+    function closeLightbox(closeLightboxButtonsList, closeButton) {
+              let slidePosition = Array.from(closeLightboxButtonsList).indexOf(
+                closeButton
+              );
+
+              lightboxListContainer.setAttribute("aria-hidden", "true");
+              lightboxItemsList[slidePosition].setAttribute("aria-hidden", "true");
+              main.setAttribute("aria-hidden", "false");
+
+              lightboxListContainer.style.display = "none";
+
+              lightboxItemsList[slidePosition].style.display = "none";
+              getTabbableElements(document).forEach(
+                (tabbable) => (tabbable.tabIndex = 0)
+              );
+              getTabbableElements(lightboxItemsList[slidePosition]).forEach(
+                (tabbable) => (tabbable.tabIndex = -1)
+              );
+            }
+
+
 
     // manage click on lightbox next button
 
@@ -314,14 +319,11 @@ async function displayMedias() {
     // manage click on keyboard arrows
 
     document.addEventListener("keyup", (e) => {
-
       let activeLightboxIndex = Array.from(lightboxItemsList).findIndex(
         (lightbox) => lightbox.ariaHidden === "false"
       );
 
-      if (
-        e.key === "ArrowRight"
-      ) {
+      if (e.key === "ArrowRight") {
         showNextSlide(nextButtonsList, nextButtonsList[activeLightboxIndex]);
       }
 
@@ -329,6 +331,9 @@ async function displayMedias() {
         showPrevSlide(prevButtonsList, prevButtonsList[activeLightboxIndex]);
       }
 
+       if (e.key === "Escape") {
+        closeLightbox(closeLightboxButtonsList, closeLightboxButtonsList[activeLightboxIndex])
+      } 
     });
   }
 }
