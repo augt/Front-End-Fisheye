@@ -139,18 +139,12 @@ async function displayMedias() {
 
     let lightboxItemsList = document.querySelectorAll(".lightbox-item");
 
-    let main = document.querySelector("main");
-    let header = document.querySelector("header")
-
     for (let link of lightboxLinkList) {
       link.addEventListener("click", function (e) {
         e.preventDefault();
         let slidePosition = Array.from(lightboxLinkList).indexOf(link);
 
         lightboxListContainer.style.display = "block";
-
-        main.style.display = "none";
-        header.style.display = "none";
 
 
         lightboxItemsList[slidePosition].style.display = "flex";
@@ -213,25 +207,70 @@ async function displayMedias() {
 
     let lightboxItemsList = document.querySelectorAll(".lightbox-item");
 
-    let closeLightboxButtonList = document.querySelectorAll(".lightbox-close");
+    let closeLightboxButtonsList = document.querySelectorAll(".lightbox-close");
 
-    let main = document.querySelector("main");
-    let header = document.querySelector("header")
-
-    for (let closeButton of closeLightboxButtonList) {
+    for (let closeButton of closeLightboxButtonsList) {
       closeButton.addEventListener("click", function (e) {
         e.preventDefault
 
-        let slidePosition = Array.from(closeLightboxButtonList).indexOf(closeButton);
+        let slidePosition = Array.from(closeLightboxButtonsList).indexOf(closeButton);
 
         lightboxListContainer.style.display = "none";
 
         lightboxItemsList[slidePosition].style.display = "none";
 
-        main.style.display = "unset";
-        header.style.display = "unset";
-
       });
     }
+
+    // manage click on lightbox next button
+
+    let nextButtonsList = document.querySelectorAll(".lightbox-next");
+
+    for (let nextButton of nextButtonsList){
+      nextButton.addEventListener("click", function (e) {
+        e.preventDefault
+
+        let slidePosition = Array.from(nextButtonsList).indexOf(nextButton);
+        
+        let slideIndexToShow = slidePosition + 1;
+        console.log(nextButtonsList.length)
+
+        if (slideIndexToShow === nextButtonsList.length){
+          slideIndexToShow = 0;
+        }
+
+        lightboxItemsList[slidePosition].style.display = "none";
+
+        lightboxItemsList[slideIndexToShow].style.display = "flex";
+
+      });
+
+    }
+
+    // manage click on lightbox previous button
+
+    let prevButtonsList = document.querySelectorAll(".lightbox-prev");
+
+    for (let prevButton of prevButtonsList){
+      prevButton.addEventListener("click", function (e) {
+        e.preventDefault
+
+        let slidePosition = Array.from(prevButtonsList).indexOf(prevButton);
+        
+        let slideIndexToShow = slidePosition - 1;
+        console.log(prevButtonsList.length)
+
+        if (slideIndexToShow === -1 ){
+          slideIndexToShow = prevButtonsList.length -1;
+        }
+
+        lightboxItemsList[slidePosition].style.display = "none";
+
+        lightboxItemsList[slideIndexToShow].style.display = "flex";
+
+      });
+
+    }
+
   }
 }

@@ -304,10 +304,12 @@ form textarea {
 #lightbox_modal {
   display: none;
   position: fixed;
-  top: 100px;
+  top: 0;
   left: 0;
   right: 0;
   z-index: 100;
+  height: 100%;
+  background-color: white;
 }
 
 #lightbox_modal .close-lightbox {
@@ -319,7 +321,7 @@ form textarea {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-
+  margin-top: 100px;
 }
 
 .lightbox-card img,
