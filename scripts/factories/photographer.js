@@ -7,10 +7,10 @@ function photographerFactory(data) {
     const article = document.createElement("article");
     const photographerLink = document.createElement("a");
     photographerLink.setAttribute("href", "photographer.html?id=" + id);
-    photographerLink.setAttribute("aria-label", "Profil de " + name);
+    photographerLink.setAttribute("aria-label", name);
     const img = document.createElement("img");
     img.setAttribute("src", picture);
-    img.setAttribute("alt", name);
+    img.setAttribute("alt", "");
     const h2 = document.createElement("h2");
     const locationDiv = document.createElement("div");
     const taglineDiv = document.createElement("div");
@@ -21,7 +21,7 @@ function photographerFactory(data) {
     h2.textContent = name;
     article.appendChild(photographerLink);
     photographerLink.appendChild(img);
-    article.appendChild(h2);
+    photographerLink.appendChild(h2);
     article.appendChild(locationDiv);
     locationDiv.classList.add("location");
     article.appendChild(taglineDiv);
